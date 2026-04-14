@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Đặt lịch khám MedBooking</title>
+  <style>
+    .error-msg { color: red; font-size: 0.85em; display: block; margin-top: 5px; }
+    .form-group { margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+<h2>Đặt Lịch Khám Bệnh</h2>
+
+<form th:action="@{/booking/create}" method="post" th:object="${booking}">
+
+  <div class="form-group">
+    <label>Họ và tên:</label>
+    <input type="text" th:field="*{patientName}" />
+    <span class="error-msg" th:if="${#fields.hasErrors('patientName')}" th:errors="*{patientName}"></span>
+  </div>
+
+  <div class="form-group">
+    <label>Tuổi:</label>
+    <input type="number" th:field="*{age}" />
+    <span class="error-msg" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+  </div>
+
+  <div class="form-group">
+    <label>Mã khoa khám (Bắt đầu bằng MED_):</label>
+    <input type="text" th:field="*{departmentCode}" />
+    <span class="error-msg" th:if="${#fields.hasErrors('departmentCode')}" th:errors="*{departmentCode}"></span>
+  </div>
+
+  <button type="submit">Xác nhận đặt lịch</button>
+</form>
+</body>
+</html>
